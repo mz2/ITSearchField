@@ -54,8 +54,4 @@
 
 - (void)toggleWidth;
 
-// Override delegate setter & getter
-- (id<ITSearchFieldDelegate>)delegate;
-- (void)setDelegate:(id<ITSearchFieldDelegate>)anObject;
-
 @end
