@@ -42,11 +42,6 @@
 
 @implementation ITSearchField
 
-- (id<ITSearchFieldDelegate>)searchFieldDelegate
-{
-    return (id<ITSearchFieldDelegate>)self.delegate;
-}
-
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
