@@ -62,8 +62,15 @@
     self.isCollapsed = !self.isCollapsed;
 }
 
+- (id<ITSearchFieldDelegate>)searchFieldDelegate
+{
+    if (self.delegate)
+        assert([self.delegate conformsToProtocol:@protocol(ITSearchFieldDelegate)]);
+    return (id<ITSearchFieldDelegate>)self.delegate;
+}
+
 - (BOOL)_canExpand {
-    if ([self.delegate respondsToSelector:@selector(searchFieldShouldExpand:)]) {
+    if ([self.searchFieldDelegate respondsToSelector:@selector(searchFieldShouldExpand:)]) {
         return [self.searchFieldDelegate searchFieldShouldExpand:self];
     }
     
