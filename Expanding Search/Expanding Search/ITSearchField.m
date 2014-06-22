@@ -42,6 +42,11 @@
 
 @implementation ITSearchField
 
+- (id<ITSearchFieldDelegate>)searchFieldDelegate
+{
+    return (id<ITSearchFieldDelegate>)self.delegate;
+}
+
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
@@ -59,7 +64,7 @@
 
 - (BOOL)_canExpand {
     if ([self.delegate respondsToSelector:@selector(searchFieldShouldExpand:)]) {
-        return [self.delegate searchFieldShouldExpand:self];
+        return [self.searchFieldDelegate searchFieldShouldExpand:self];
     }
     
     return YES;
@@ -67,19 +72,13 @@
 
 - (BOOL)_canCollapse {
     if ([self.delegate respondsToSelector:@selector(searchFieldShouldCollapse:)]) {
-        return [self.delegate searchFieldShouldCollapse:self];
+        return [self.searchFieldDelegate searchFieldShouldCollapse:self];
     }
     
     return YES;
 }
 
 #pragma mark Setters & Getters
-- (id<ITSearchFieldDelegate>)delegate {
-    return super.delegate;
-}
-- (void)setDelegate:(id<ITSearchFieldDelegate>)anObject {
-    [super setDelegate:anObject];
-}
 
 - (void)setIsCollapsed:(BOOL)isCollapsed {
     BOOL performAction = (isCollapsed)?[self _canCollapse]:[self _canExpand];
@@ -102,12 +101,12 @@
             
             // Notify the delegate
             if (_isCollapsed) {
-                if ([self.delegate respondsToSelector:@selector(searchFieldDidCollapse:)]) {
-                    [self.delegate searchFieldDidCollapse:self];
+                if ([self.searchFieldDelegate respondsToSelector:@selector(searchFieldDidCollapse:)]) {
+                    [self.searchFieldDelegate searchFieldDidCollapse:self];
                 }
             } else {
-                if ([self.delegate respondsToSelector:@selector(searchFieldDidExpand:)]) {
-                    [self.delegate searchFieldDidExpand:self];
+                if ([self.searchFieldDelegate respondsToSelector:@selector(searchFieldDidExpand:)]) {
+                    [self.searchFieldDelegate searchFieldDidExpand:self];
                 }
             }
         } animationBlock:^{
