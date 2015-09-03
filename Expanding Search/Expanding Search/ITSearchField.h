@@ -47,8 +47,8 @@
 @interface ITSearchField : NSSearchField
 
 @property (nonatomic) BOOL isCollapsed;
-@property (nonatomic) float animationDuration;
-@property (nonatomic) float expandedWidth;
+@property (nonatomic) CGFloat animationDuration;
+@property (nonatomic) CGFloat expandedWidth;
 
 @property (nonatomic, readonly) float collapsedWidth;
 

@@ -90,7 +90,7 @@
         _isCollapsed = isCollapsed;
         [self.window makeFirstResponder:nil];
         
-        float newWidth = (isCollapsed)?kCollapsedWidth:self.expandedWidth;
+        CGFloat newWidth = (isCollapsed) ? kCollapsedWidth : self.expandedWidth;
         
         [NSAnimationContext groupWithDuration:self.animationDuration timingFunctionWithName:kCAMediaTimingFunctionEaseOut completionHandler:^{
             if (!isCollapsed) {

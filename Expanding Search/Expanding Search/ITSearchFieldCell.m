@@ -74,7 +74,7 @@
 
     ITSearchField *sf = (ITSearchField *)self.controlView;
     
-    float alpha = 1.0 / (sf.expandedWidth - sf.collapsedWidth) * (NSWidth(sf.frame) - sf.collapsedWidth);
+    CGFloat alpha = 1.0 / (sf.expandedWidth - sf.collapsedWidth) * (NSWidth(sf.frame) - sf.collapsedWidth);
    
     //// Color Declarations
     NSColor* borderColor = [NSColor colorWithDeviceWhite:0.59 alpha:1 * alpha];
